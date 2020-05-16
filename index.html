@@ -18,58 +18,45 @@
 <div id="app">
     <h1>Previsão do tempo</h1>
     <div id="previsao-single">
-        <div class="cidade-card">
-            <h3 class="cidade-descricao">Niterói, RJ - Brasil</h3>
+        <div class="cidade-card" v-if="cityLoading">
+            <h3 class="cidade-descricao">Carregando {{cityName}}</h3>
+        </div>
+        <div class="cidade-card" v-if="cityLoaded">
+            <h3 class="cidade-descricao">{{loadedCity.city}}, {{loadedCity.region}} - {{loadedCity.country}}</h3>
             <div class="cidade-previsao-atual">
-                <p class="cidade-temperatura">20ºC Nublado</p>
+                <p class="cidade-temperatura">{{loadedCity.current.temperature}}ºC {{loadedCity.current.text}}</p>
                 <div class="cidade-min-max">
-                    <i class="fas fa-arrow-down"></i> <span class="min">16º</span>
-                    <i class="fas fa-arrow-up"></i> <span class="max">25º</span>
+                    <i class="fas fa-arrow-down"></i> <span class="min">{{loadedCity.current.min}}º</span>
+                    <i class="fas fa-arrow-up"></i> <span class="max">{{loadedCity.current.max}}º</span>
                 </div>
                 <div class="cidade-sencacao-termica cidade-info">
-                    Sensação <span class="valor">19º</span>
+                    Sensação <span class="valor">{{loadedCity.current.sensacao}}º</span>
                 </div>
                 <div class="cidade-velocidade-vento cidade-info">
-                    Vento <span class="valor">18km/h</span>
+                    Vento <span class="valor">{{loadedCity.current.windSpeed}}km/h</span>
                 </div>
                 <div class="cidade-humidade cidade-info">
-                    Humidade <span class="valor">89%</span>
+                    Humidade <span class="valor">{{loadedCity.current.humidity}}%</span>
                 </div>
             </div>
             <ul class="cidade-previsoes-futura">
-                <p class="previsao">
-                    <strong class="dia">Terça</strong>
-                    <span class="min-max">18º 26º</span>
-                </p>
-                <p class="previsao">
-                    <strong class="dia">Quarta</strong>
-                    <span class="min-max">18º 26º</span>
-                </p>
-                <p class="previsao">
-                    <strong class="dia">Quinta</strong>
-                    <span class="min-max">18º 26º</span>
-                </p>
-                <p class="previsao">
-                    <strong class="dia">Sexta</strong>
-                    <span class="min-max">18º 26º</span>
-                </p>
-                <p class="previsao">
-                    <strong class="dia">Sábado</strong>
-                    <span class="min-max">18º 26º</span>
+                <p class="previsao" v-for="dia in loadedCity.nextDays">
+                    <strong class="dia">{{dia.day}}</strong>
+                    <span class="min-max">{{dia.min}}º {{dia.max}}º</span>
                 </p>
             </ul>
-            <a href="#" class="fechar" title="fechar previsão">X</a>
+            <a href="#" class="fechar" title="fechar previsão" v-on:click="unloadCity">X</a>
         </div>
-        <form action="/" id="buscar">
-            <input type="search" id="cidade-input" name="cidade" placeholder="Insira aqui o nome da cidade">
-            <span id="buscar-cidade"><i class="fas fa-search"></i></span>
+        <form action="/" id="buscar" v-on:submit.prevent="lookUpCity">
+            <input type="search" id="cidade-input" name="cidade" placeholder="Insira aqui o nome da cidade" v-model="cityName">
+            <span id="buscar-cidade" v-on:click="lookUpCity"><i class="fas fa-search"></i></span>
         </form>
     </div>
 
     <hr>
 
     <div id="capitais">
-        <h2>Capitais</h2>
+        <h2>Capitais <span v-if="capitalsLoaded < 10" style="font-size: .8em">Atualizando {{10 - capitalsLoaded}} de 10...</span></h2>
         <table class="capitais-card-desktop">
             <tr>
                 <th scope="col">min</th>
@@ -77,28 +64,28 @@
                 <th scope="col">&nbsp;</th>
             </tr>
             <tr>
-                <td>18º</td>
-                <td>27º</td>
+                <td>{{capitais.riojaneiro.min}}º</td>
+                <td>{{capitais.riojaneiro.max}}º</td>
                 <td>Rio de Janeiro</td>
             </tr>
             <tr>
-                <td>14º</td>
-                <td>22º</td>
+                <td>{{capitais.saopaulo.min}}º</td>
+                <td>{{capitais.saopaulo.max}}º</td>
                 <td>São Paulo</td>
             </tr>
             <tr>
-                <td>21º</td>
-                <td>32º</td>
+                <td>{{capitais.belohorizonte.min}}º</td>
+                <td>{{capitais.belohorizonte.max}}º</td>
                 <td>Belo Horizonte</td>
             </tr>
             <tr>
-                <td>24º</td>
-                <td>37º</td>
+                <td>{{capitais.brasilia.min}}º</td>
+                <td>{{capitais.brasilia.max}}º</td>
                 <td>Brasília</td>
             </tr>
             <tr>
-                <td>24º</td>
-                <td>37º</td>
+                <td>{{capitais.belem.min}}º</td>
+                <td>{{capitais.belem.max}}º</td>
                 <td>Belém</td>
             </tr>
         </table>
@@ -109,28 +96,28 @@
                 <th scope="col">&nbsp;</th>
             </tr>
             <tr>
-                <td>23º</td>
-                <td>37º</td>
+                <td>{{capitais.salvador.min}}º</td>
+                <td>{{capitais.salvador.max}}º</td>
                 <td>Salvador</td>
             </tr>
             <tr>
-                <td>5º</td>
-                <td>14º</td>
+                <td>{{capitais.curitiba.min}}º</td>
+                <td>{{capitais.curitiba.max}}º</td>
                 <td>Curitiba</td>
             </tr>
             <tr>
-                <td>21º</td>
-                <td>32º</td>
+                <td>{{capitais.fortaleza.min}}º</td>
+                <td>{{capitais.fortaleza.max}}º</td>
                 <td>Fortaleza</td>
             </tr>
             <tr>
-                <td>24º</td>
-                <td>37º</td>
+                <td>{{capitais.manaus.min}}º</td>
+                <td>{{capitais.manaus.max}}º</td>
                 <td>Manaus</td>
             </tr>
             <tr>
-                <td>24º</td>
-                <td>37º</td>
+                <td>{{capitais.joaopessoa.min}}º</td>
+                <td>{{capitais.joaopessoa.max}}º</td>
                 <td>João Pessoa</td>
             </tr>
         </table>
@@ -142,53 +129,53 @@
                 <th scope="col">&nbsp;</th>
             </tr>
             <tr>
-                <td>18º</td>
-                <td>27º</td>
+                <td>{{capitais.riojaneiro.min}}º</td>
+                <td>{{capitais.riojaneiro.max}}º</td>
                 <td>Rio de Janeiro</td>
             </tr>
             <tr>
-                <td>14º</td>
-                <td>22º</td>
+                <td>{{capitais.saopaulo.min}}º</td>
+                <td>{{capitais.saopaulo.max}}º</td>
                 <td>São Paulo</td>
             </tr>
             <tr>
-                <td>21º</td>
-                <td>32º</td>
+                <td>{{capitais.belohorizonte.min}}º</td>
+                <td>{{capitais.belohorizonte.max}}º</td>
                 <td>Belo Horizonte</td>
             </tr>
             <tr>
-                <td>24º</td>
-                <td>37º</td>
+                <td>{{capitais.brasilia.min}}º</td>
+                <td>{{capitais.brasilia.max}}º</td>
                 <td>Brasília</td>
             </tr>
             <tr>
-                <td>24º</td>
-                <td>37º</td>
+                <td>{{capitais.belem.min}}º</td>
+                <td>{{capitais.belem.max}}º</td>
                 <td>Belém</td>
             </tr>
             <tr>
-                <td>23º</td>
-                <td>37º</td>
+                <td>{{capitais.salvador.min}}º</td>
+                <td>{{capitais.salvador.max}}º</td>
                 <td>Salvador</td>
             </tr>
             <tr>
-                <td>5º</td>
-                <td>14º</td>
+                <td>{{capitais.curitiba.min}}º</td>
+                <td>{{capitais.curitiba.max}}º</td>
                 <td>Curitiba</td>
             </tr>
             <tr>
-                <td>21º</td>
-                <td>32º</td>
+                <td>{{capitais.fortaleza.min}}º</td>
+                <td>{{capitais.fortaleza.max}}º</td>
                 <td>Fortaleza</td>
             </tr>
             <tr>
-                <td>24º</td>
-                <td>37º</td>
+                <td>{{capitais.manaus.min}}º</td>
+                <td>{{capitais.manaus.max}}º</td>
                 <td>Manaus</td>
             </tr>
             <tr>
-                <td>24º</td>
-                <td>37º</td>
+                <td>{{capitais.joaopessoa.min}}º</td>
+                <td>{{capitais.joaopessoa.max}}º</td>
                 <td>João Pessoa</td>
             </tr>
         </table>
@@ -196,8 +183,14 @@
 
 </div>
 
+<script
+        src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+        crossorigin="anonymous"></script>
 <!-- Importando vue do CDN -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- Importando CryptoJS para o Oauth -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 <!-- Script principal -->
 <script src="./js/main.js"></script>
 </body>
