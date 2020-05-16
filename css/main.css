@@ -133,14 +133,18 @@ body {
     position: relative;
     height: 60px;
     width: 500px;
+    background: #fff;
+    border: 1px solid #ccc;
 }
 
 #cidade-input {
     position: absolute;
     box-sizing: border-box;
     padding: 15px 25px;
-    width: 500px;
+    width: 400px;
     height: 60px;
+    border: none;
+    outline: none;
     z-index: 1;
 }
 
@@ -159,4 +163,5 @@ body {
 
 #app hr {
     border: 1px solid #fff;
+    margin-top: 40px;
 }
