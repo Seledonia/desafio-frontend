@@ -112,11 +112,13 @@ body {
 }
 
 .previsao {
-    width: 60px;
+    width: 17%;
 }
 
 .cidade-previsoes-futura .min-max {
     display: block;
+    font-weight: 900;
+    color: rgb(253,127,35);
 }
 
 .fechar {
@@ -193,3 +195,108 @@ body {
      font-weight: 900;
      color: rgb(54,46,34);
  }
+
+.capitais-card-mobile {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    #app {
+        width: 100%;
+    }
+
+    #app h1 {
+        font-size: 3em;
+        padding-left: 1em;
+        text-align: left;
+    }
+
+    #app.card-aberto h1 {
+        font-size: 1.8em;
+    }
+
+    #app h2 {
+        color: #fff;
+        font-size: 2em;
+    }
+
+    #previsao-single {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0;
+    }
+
+    .cidade-card {
+        background: rgb(255,242,229);
+        background: linear-gradient(180deg, rgba(255,242,229,1) 0%, rgba(253,242,227,1) 100%);
+        box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, .2);
+        margin-bottom: 20px;
+        height: 300px;
+        position: relative;
+    }
+
+
+    .cidade-previsoes-futura {
+        position: absolute;
+        top: 200px;
+        left: 0px;
+        display: flex;
+        justify-content: space-between;
+        box-sizing: border-box;
+        padding: 0 25px;
+        width: 100%;
+        border-top: 1px solid rgb(253,127,35);
+    }
+
+    #buscar {
+        position: relative;
+        height: 60px;
+        width: 90%;
+        margin: 0 auto;
+        background: #fff;
+        border: 1px solid #ccc;
+    }
+
+    #cidade-input {
+        position: absolute;
+        box-sizing: border-box;
+        padding: 15px 50px 15px 5%;
+        width: 100%;
+        height: 60px;
+        border: none;
+        outline: none;
+        z-index: 1;
+    }
+
+    #buscar-cidade {
+        position: absolute;
+        z-index: 2;
+        width: 25px;
+        height: 25px;
+        color: #313131;
+        font-size: 25px;
+        top: 15px;
+        right: 15px;
+        cursor: pointer;
+    }
+
+    #app hr {
+        border: 1px solid #fff;
+        margin-top: 40px;
+    }
+
+    #capitais {
+        width: 80%;
+        margin: 0 auto;
+        font-size: 120%;
+    }
+
+    #capitais .capitais-card-desktop {
+        display: none;
+    }
+
+    #capitais .capitais-card-mobile {
+        display: block;
+    }
+
+}
