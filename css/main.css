@@ -1,6 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600;700&display=swap');
+
 body {
     background: rgb(253,127,35);
     background: linear-gradient(180deg, rgba(253,127,35,1) 0%, rgba(254,186,44,1) 100%);
     min-width: 100vw;
     min-height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#app {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#app hr {
+    border: 1px solid #fff;
 }
