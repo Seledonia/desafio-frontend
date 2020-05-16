@@ -24,6 +24,110 @@ body {
     font-size: 2em;
 }
 
+#previsao-single {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 8.333333333%;
+}
+
+.cidade-card {
+    background: rgb(255,242,229);
+    background: linear-gradient(180deg, rgba(255,242,229,1) 0%, rgba(253,242,227,1) 100%);
+    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, .2);
+    margin-bottom: 20px;
+    height: 300px;
+    position: relative;
+}
+
+.cidade-card h3 {
+    position: absolute;
+    top: 20px;
+    left: 50px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.cidade-previsao-atual {
+    position: absolute;
+    top: 70px;
+    left: 50px;
+}
+
+.cidade-temperatura {
+    font-size: 2.5em;
+    margin: 0;
+    font-weight: 700;
+}
+
+.cidade-info {
+    width: 140px;
+}
+
+.cidade-info .valor {
+    font-weight: 600;
+}
+
+.cidade-min-max {
+    position: absolute;
+    top: 65px;
+    left: 0;
+    font-weight: 600;
+}
+
+.cidade-min-max i {
+    color: rgb(253,127,35);
+
+}
+
+.cidade-sencacao-termica {
+    position: absolute;
+    top: 65px;
+    left: 140px;
+}
+
+.cidade-velocidade-vento {
+    position: absolute;
+    top: 100px;
+    left: 0;
+}
+
+.cidade-humidade {
+    position: absolute;
+    top: 100px;
+    left: 140px;
+}
+
+
+.cidade-previsoes-futura {
+    position: absolute;
+    top: 200px;
+    left: 25px;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 25px;
+    width: 450px;
+    border-top: 1px solid rgb(253,127,35);
+}
+
+.previsao {
+    width: 60px;
+}
+
+.cidade-previsoes-futura .min-max {
+    display: block;
+}
+
+.fechar {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+}
+
 #app hr {
     border: 1px solid #fff;
 }

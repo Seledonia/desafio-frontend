@@ -6,59 +6,65 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Previsão do tempo</title>
+    <!-- CSS RESET -->
     <link rel="stylesheet" href="./css/normalize.css">
+    <!-- Icones -->
+    <link rel="stylesheet" href="./css/all.css">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
 
 <div id="app">
     <h1>Previsão do tempo</h1>
-    <div class="cidade-card">
-        <h3 class="cidade-descricao">Niterói, RJ - Brasil</h3>
-        <div class="cidade-previsao-atual">
-            <p class="cidade-temperatura">20ºC Nublado</p>
-            <div class="cidade-min-max">
-                <span class="min">16º</span>
-                <span class="max">25º</span>
+    <div id="previsao-single">
+        <div class="cidade-card">
+            <h3 class="cidade-descricao">Niterói, RJ - Brasil</h3>
+            <div class="cidade-previsao-atual">
+                <p class="cidade-temperatura">20ºC Nublado</p>
+                <div class="cidade-min-max">
+                    <i class="fas fa-arrow-down"></i> <span class="min">16º</span>
+                    <i class="fas fa-arrow-up"></i> <span class="max">25º</span>
+                </div>
+                <div class="cidade-sencacao-termica cidade-info">
+                    Sensação <span class="valor">19º</span>
+                </div>
+                <div class="cidade-velocidade-vento cidade-info">
+                    Vento <span class="valor">18km/h</span>
+                </div>
+                <div class="cidade-humidade cidade-info">
+                    Humidade <span class="valor">89%</span>
+                </div>
             </div>
-            <div class="cidade-sencacao-termica cidade-info">
-                Sensação <span class="valor">19º</span>
-            </div>
-            <div class="cidade-velocidade-vento cidade-info">
-                Vento <span class="valor">18km/h</span>
-            </div>
-            <div class="cidade-humidade cidade-info">
-                Humidade <span class="valor">89%</span>
-            </div>
+            <ul class="cidade-previsoes-futura">
+                <p class="previsao">
+                    <strong class="dia">Terça</strong>
+                    <span class="min-max">18º 26º</span>
+                </p>
+                <p class="previsao">
+                    <strong class="dia">Quarta</strong>
+                    <span class="min-max">18º 26º</span>
+                </p>
+                <p class="previsao">
+                    <strong class="dia">Quinta</strong>
+                    <span class="min-max">18º 26º</span>
+                </p>
+                <p class="previsao">
+                    <strong class="dia">Sexta</strong>
+                    <span class="min-max">18º 26º</span>
+                </p>
+                <p class="previsao">
+                    <strong class="dia">Sábado</strong>
+                    <span class="min-max">18º 26º</span>
+                </p>
+            </ul>
+            <a href="#" class="fechar" title="fechar previsão">X</a>
         </div>
-        <ul class="cidade-previsoes-futura">
-            <p class="previsao">
-                <strong class="dia">Terça</strong>
-                <span class="min-max">18º 26º</span>
-            </p>
-            <p class="previsao">
-                <strong class="dia">Quarta</strong>
-                <span class="min-max">18º 26º</span>
-            </p>
-            <p class="previsao">
-                <strong class="dia">Quinta</strong>
-                <span class="min-max">18º 26º</span>
-            </p>
-            <p class="previsao">
-                <strong class="dia">Sexta</strong>
-                <span class="min-max">18º 26º</span>
-            </p>
-            <p class="previsao">
-                <strong class="dia">Sábado</strong>
-                <span class="min-max">18º 26º</span>
-            </p>
-        </ul>
-        <a href="#" class="fechar" title="fechar previsão">X</a>
+        <form action="/">
+            <input type="search" name="cidade" placeholder="Insira aqui o nome da cidade">
+            <input type="submit" value="consultar">
+        </form>
     </div>
-    <form action="/">
-        <input type="search" name="cidade" placeholder="Insira aqui o nome da cidade">
-        <input type="submit" value="consultar">
-    </form>
 
     <hr>
 
