@@ -3,13 +3,13 @@
 body {
     background: rgb(253,127,35);
     background: linear-gradient(180deg, rgba(253,127,35,1) 0%, rgba(254,186,44,1) 100%);
-    min-width: 100vw;
+    width: 100%;
     min-height: 100vh;
     font-family: 'Open Sans', sans-serif;
 }
 
 #app {
-    max-width: 600px;
+    width: 600px;
     margin: 0 auto;
 }
 
@@ -160,8 +160,36 @@ body {
     cursor: pointer;
 }
 
-
 #app hr {
     border: 1px solid #fff;
     margin-top: 40px;
 }
+
+#capitais {
+    width: 450px;
+    margin: 0 auto;
+}
+
+#capitais .capitais-card-desktop {
+    width: 225px;
+    float: left;
+}
+
+#capitais table tr {
+    height: 40px;
+}
+
+#capitais table th {
+    text-transform: capitalize;
+    font-size: .8em;
+    font-weight: 300;
+    color: rgb(144,101,30);
+    text-align: left;
+}
+
+#capitais table td {
+     text-transform: capitalize;
+     font-size: 1em;
+     font-weight: 900;
+     color: rgb(54,46,34);
+ }
