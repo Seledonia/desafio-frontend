@@ -1,7 +1,19 @@
 # Desafio-Frontend
+Este repositório contém a resolução do desafio FrontEnd para a oportunidade de Front-end Developer na Partner Programmer, seguindo a orientação do recrutador escolhi este desafio https://github.com/1STi/desafio-frontend  da lista de desafios sugeridos.
+ 
+## Como utilizar esta solução
+Para executar essa solução é necessário obter as credencias de acesso de API de clima do Yahoo no endereço https://developer.yahoo.com/weather/ e alterar o seguinte trecho com as tuas credenciais.
 
-![alt tag](https://s3-us-west-1.amazonaws.com/1sti/1sti-transformacao.png)
+```javascript
+const credentials = {
+    app_id: '',
+    consumer_key : '',
+    consumer_secret : '',
+};
 
+```
+ Para o correto funcionamento os arquivos devem ser acessados de um servidor Web (ex. Apache, Nginx, lighttpd, etc)
+ 
 ## Bem-vindo
 
 A 1STi é uma consultoria em tecnologias digitais emergentes que tem a missão de aproximar a tecnologia das reais necessidades sociais. Nós enxergamos a tecnologia como um presente à humanidade dado pela expressão de nosso próprio intelecto, realizando uma síntese entre arte, humanidade e ciência.
